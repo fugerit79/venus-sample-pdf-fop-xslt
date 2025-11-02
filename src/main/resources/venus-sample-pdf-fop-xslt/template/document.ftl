@@ -30,13 +30,19 @@
         <info name="excel-table-id">data-table=print</info>
         <!-- property specific for csv -->
         <info name="csv-table-id">data-table</info>
+
+        <#if enableXslt!false >
+            <info name="mod-fop-xslt-path">venus-sample-pdf-fop-xslt/fop-xslt/xslt-sample.xsl</info>
+            <info name="mod-fop-xslt-debug">${(debugXslt!false)?string('true', 'false')}</info>
+        </#if>
+
         <footer-ext>
             <para align="right">${r"${currentPage}"} / ${r"${pageCount}"}</para>
         </footer-ext>
     </metadata>
     <body>
     <para>${docTitle!defaultTitle}</para>
-    <table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2">
+    <table columns="3" colwidths="30;30;40"  width="100" id="data-table" padding="2" space-after="30">
         <row header="true">
             <cell align="center"><para>Name</para></cell>
             <cell align="center"><para>Surname</para></cell>
@@ -44,6 +50,22 @@
         </row>
         <#if listPeople??>
             <#list listPeople as current>
+                <row>
+                    <cell><para>${current.name}</para></cell>
+                    <cell><para>${current.surname}</para></cell>
+                    <cell><para>${current.title}</para></cell>
+                </row>
+            </#list>
+        </#if>
+    </table>
+    <table columns="3" colwidths="30;30;40"  width="100" id="end-element" padding="2">
+        <row header="true">
+            <cell align="center"><para>Name</para></cell>
+            <cell align="center"><para>Surname</para></cell>
+            <cell align="center"><para>Title</para></cell>
+        </row>
+        <#if listPeopleEnd??>
+            <#list listPeopleEnd as current>
                 <row>
                     <cell><para>${current.name}</para></cell>
                     <cell><para>${current.surname}</para></cell>
