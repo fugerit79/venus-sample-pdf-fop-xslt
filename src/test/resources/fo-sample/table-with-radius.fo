@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format"
+         xmlns:fox="http://xmlgraphics.apache.org/fop/extensions">
+    <fo:layout-master-set>
+        <fo:simple-page-master master-name="A4" page-height="29.7cm" page-width="21cm">
+            <fo:region-body margin="2cm"/>
+        </fo:simple-page-master>
+    </fo:layout-master-set>
+
+    <fo:page-sequence master-reference="A4">
+        <fo:flow flow-name="xsl-region-body">
+            <fo:block font-size="18pt" font-weight="bold" margin-bottom="1cm">
+                Tabella con Bordi Arrotondati
+            </fo:block>
+
+            <!-- Table with 3 rows and 3 columns with rounded borders -->
+            <fo:table id="data-table"
+                      border-separation="0"
+                      border-collapse="separate"
+                      width="100%"
+                      fox:border-radius="8pt">
+                <fo:table-column column-width="33.33%"/>
+                <fo:table-column column-width="33.33%"/>
+                <fo:table-column column-width="33.33%"/>
+
+                <fo:table-body>
+                    <!-- Row 1 -->
+                    <fo:table-row>
+                        <fo:table-cell id="data_table_0"
+                                       border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#E8F4F8"
+                                       fox:border-before-start-radius="8pt">
+                            <fo:block font-weight="bold">Header 1</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#E8F4F8">
+                            <fo:block font-weight="bold">Header 2</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#E8F4F8"
+                                       fox:border-before-end-radius="8pt">
+                            <fo:block font-weight="bold">Header 3</fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+
+                    <!-- Row 2 -->
+                    <fo:table-row>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#F5F5F5">
+                            <fo:block>Colonna 1</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#F5F5F5">
+                            <fo:block>Colonna 2</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#F5F5F5">
+                            <fo:block>Colonna 3</fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+
+                    <!-- Row 3 -->
+                    <fo:table-row>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#FFFFFF"
+                                       fox:border-after-start-radius="8pt">
+                            <fo:block>Dato 1</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#FFFFFF">
+                            <fo:block>Dato 2</fo:block>
+                        </fo:table-cell>
+                        <fo:table-cell border="1pt solid #333333"
+                                       padding="10pt"
+                                       background-color="#FFFFFF"
+                                       fox:border-after-end-radius="8pt">
+                            <fo:block>Dato 3</fo:block>
+                        </fo:table-cell>
+                    </fo:table-row>
+                </fo:table-body>
+            </fo:table>
+        </fo:flow>
+    </fo:page-sequence>
+</fo:root>
+
