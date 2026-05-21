@@ -7,8 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- New Apache FOP with XSLT processing example for [Venus Fugerit Doc](https://github.com/fugerit-org/fj-doc) showing how to add table radius (Venus Fugerit Doc 8.18.3+ needed)
+
 ## [1.0.0] - 2025-11-02
 
 ### Added
 
-- Apache FOP with XSLT processing example for [Venus Fugerit Doc](https://github.com/fugerit-org/fj-doc)
+- Apache FOP with XSLT processing example for [Venus Fugerit Doc](https://github.com/fugerit-org/fj-doc) showing how to add *keep-together.within-page* attribute

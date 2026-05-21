@@ -55,7 +55,9 @@
         <chainStep stepType="complex" map-all="true" template-path="${chainId}.ftl"/>
     </docChain>
 
-
-
+    <!-- example document chain xml -->
+    <docChain id="document-table-with-radius" parent="shared">
+        <chainStep stepType="complex" map-all="true" template-path="${chainId}.ftl"/>
+    </docChain>
 
 </freemarker-doc-process-config>

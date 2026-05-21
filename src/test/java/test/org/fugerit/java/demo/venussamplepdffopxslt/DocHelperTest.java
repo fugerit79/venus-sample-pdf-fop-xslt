@@ -33,6 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 class DocHelperTest {
 
+    DocHelper docHelper = new DocHelper();
+
     @Test
     void testDocProcess() throws Exception {
         File pdfFileWithoutPageBreak = new File( "target/fop-xslt-sample-without-page-break.pdf" );
@@ -41,8 +43,6 @@ class DocHelperTest {
         log.info( "pdfFileWithPageBreak {}, delete? {}", pdfFileWithPageBreak, pdfFileWithPageBreak.delete() );
         try (FileOutputStream fosNoPageBreak = new FileOutputStream( pdfFileWithoutPageBreak );
              FileOutputStream fosPageBreak = new FileOutputStream( pdfFileWithPageBreak ) ) {
-            // creates the doc helper
-            DocHelper docHelper = new DocHelper();
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = new ArrayList<>();
             for ( int k=0; k<11; k++ ) {
@@ -72,6 +72,33 @@ class DocHelperTest {
 
             Assertions.assertNotEquals( 0, pdfFileWithoutPageBreak.length() );
             Assertions.assertNotEquals( 0, pdfFileWithPageBreak.length() );
+        }
+    }
+
+    @Test
+    void testDocProcessTableWithRadius() throws Exception {
+        File pdfFileTableWithRadius = new File( "target/fop-xslt-sample-table-with-radius.pdf" );
+        log.info( "pdfFileTableWithRadius {}, delete? {}", pdfFileTableWithRadius, pdfFileTableWithRadius.delete() );
+        try (FileOutputStream fosTableWithRadius = new FileOutputStream( pdfFileTableWithRadius )) {
+
+            // create custom data for the fremarker template 'document.ftl'
+            List<People> listPeople = new ArrayList<>();
+            listPeople.add( new People("Luthien", "Tinuviel", "Queen") );
+            listPeople.add( new People("Thorin", "Oakshield", "King") );
+            String chainId = "document-table-with-radius";
+            // handler id
+            String handlerId = DocConfig.TYPE_PDF;
+
+            // output generation table with radius
+            docHelper.getDocProcessConfig().fullProcess(chainId,
+                    DocProcessContext.newContext("listPeople", listPeople)
+                            .withAtt( "docTitle", "Apache FOP XLST table with radius example" )
+                            .withAtt( "listPeople", listPeople )
+                            .withAtt( "enableXslt", Boolean.TRUE )  // to enable xslt processing on our template
+                            .withAtt( "debugXslt", Boolean.TRUE ),  // if se to true will print the final xslt
+                    handlerId, fosTableWithRadius);
+
+            Assertions.assertNotEquals( 0, pdfFileTableWithRadius.length() );
         }
     }
 
