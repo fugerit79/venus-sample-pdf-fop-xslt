@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.1.0] - 2026-05-22
+
 ### Added
 
 - New Apache FOP with XSLT processing example for [Venus Fugerit Doc](https://github.com/fugerit-org/fj-doc) showing how to add table radius (Venus Fugerit Doc 8.18.3+ needed)
