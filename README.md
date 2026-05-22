@@ -117,6 +117,29 @@ Enable XSLT processing in the document metadata by using the `xslt-sample-table-
 </#if>
 ```
 
+It is also possible to apply stylesheet rules to other formats, for instance HTML, by utilizing the `html-css-style` info attribute:
+
+```xml
+<info name="html-css-style">
+    table#data-table {
+      border-collapse: separate;
+      border-spacing: 0;
+    }
+    th#top-left-border {
+      border-top-left-radius: 12px;
+    }
+    th#top-right-border {
+      border-top-right-radius: 12px;
+    }
+    td#bottom-left-border {
+      border-bottom-left-radius: 12px;
+    }
+    td#bottom-right-border {
+      border-bottom-right-radius: 12px;
+    }
+</info>
+```
+
 #### Table Structure with Corner Cell IDs
 
 Define your table with special IDs on the corner cells that will receive border-radius styling:
