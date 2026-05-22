@@ -37,6 +37,25 @@
         <!-- CSV export will include this table -->
         <info name="csv-table-id">data-table</info>
 
+        <info name="html-css-style">
+            table#data-table {
+              border-collapse: separate;
+              border-spacing: 0;
+            }
+            th#top-left-border {
+              border-top-left-radius: 12px;
+            }
+            th#top-right-border {
+              border-top-right-radius: 12px;
+            }
+            td#bottom-left-border {
+              border-bottom-left-radius: 12px;
+            }
+            td#bottom-right-border {
+              border-bottom-right-radius: 12px;
+            }
+        </info>
+
         <!-- ========================================= -->
         <!-- XSLT CONFIGURATION FOR ROUNDED BORDERS   -->
         <!-- ========================================= -->

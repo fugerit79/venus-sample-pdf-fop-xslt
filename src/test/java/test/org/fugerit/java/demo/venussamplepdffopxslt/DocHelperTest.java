@@ -7,6 +7,7 @@ import org.fugerit.java.demo.venussamplepdffopxslt.People;
 import org.fugerit.java.doc.base.config.DocConfig;
 import org.fugerit.java.doc.base.process.DocProcessContext;
 
+import org.fugerit.java.doc.freemarker.html.FreeMarkerHtmlTypeHandlerUTF8;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -78,8 +79,11 @@ class DocHelperTest {
     @Test
     void testDocProcessTableWithRadius() throws Exception {
         File pdfFileTableWithRadius = new File( "target/fop-xslt-sample-table-with-radius.pdf" );
+        File htmlFileTableWithRadius = new File( "target/fop-xslt-sample-table-with-radius.html" );
         log.info( "pdfFileTableWithRadius {}, delete? {}", pdfFileTableWithRadius, pdfFileTableWithRadius.delete() );
-        try (FileOutputStream fosTableWithRadius = new FileOutputStream( pdfFileTableWithRadius )) {
+        log.info( "htmlFileTableWithRadius {}, delete? {}", htmlFileTableWithRadius, htmlFileTableWithRadius.delete() );
+        try (FileOutputStream fosTableWithRadius = new FileOutputStream( pdfFileTableWithRadius );
+             FileOutputStream htmlTableWithRadius = new FileOutputStream( htmlFileTableWithRadius )) {
 
             // create custom data for the fremarker template 'document.ftl'
             List<People> listPeople = new ArrayList<>();
@@ -89,16 +93,19 @@ class DocHelperTest {
             // handler id
             String handlerId = DocConfig.TYPE_PDF;
 
+            DocProcessContext context = DocProcessContext.newContext("listPeople", listPeople)
+                    .withAtt( "docTitle", "Apache FOP XLST table with radius example" )
+                    .withAtt( "listPeople", listPeople )
+                    .withAtt( "enableXslt", Boolean.TRUE )  // to enable xslt processing on our template
+                    .withAtt( "debugXslt", Boolean.TRUE ); // if se to true will print the final xslt
+
             // output generation table with radius
-            docHelper.getDocProcessConfig().fullProcess(chainId,
-                    DocProcessContext.newContext("listPeople", listPeople)
-                            .withAtt( "docTitle", "Apache FOP XLST table with radius example" )
-                            .withAtt( "listPeople", listPeople )
-                            .withAtt( "enableXslt", Boolean.TRUE )  // to enable xslt processing on our template
-                            .withAtt( "debugXslt", Boolean.TRUE ),  // if se to true will print the final xslt
-                    handlerId, fosTableWithRadius);
+            docHelper.getDocProcessConfig().fullProcess(chainId, context, handlerId, fosTableWithRadius);
+
+            docHelper.getDocProcessConfig().fullProcess(chainId, context, FreeMarkerHtmlTypeHandlerUTF8.HANDLER.getKey(), htmlTableWithRadius);
 
             Assertions.assertNotEquals( 0, pdfFileTableWithRadius.length() );
+            Assertions.assertNotEquals( 0, htmlFileTableWithRadius.length() );
         }
     }
 
