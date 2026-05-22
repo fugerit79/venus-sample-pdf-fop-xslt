@@ -37,6 +37,9 @@ mvn org.fugerit.java:fj-doc-maven-plugin:8.17.2:init \
 
 ## Mod FOP XSLT Processing
 
+> [!TIP]
+> Any XSLT transformation can be applied to the FO document before rendering using `mod-fop-xslt-path`.
+
 ### Example with custom XLST to add the *keep-together.within-page* attribute
 
 We need to add the [mod-fop-xslt-path](https://venusdocs.fugerit.org/guide/#doc-handler-mod-fop-xslt-path) attribute : 
