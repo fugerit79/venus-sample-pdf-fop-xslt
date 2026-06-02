@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.fugerit.java.demo</groupId>
   <artifactId>venus-sample-pdf-fop-xslt</artifactId>
-  <version>1.1.0</version>
+  <version>1.1.1</version>
   <properties>
     <maven.compiler.release>21</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <fj-doc-version>8.18.3</fj-doc-version>
+    <fj-doc-version>8.18.4</fj-doc-version>
     <jacoco-plugin-version>0.8.14</jacoco-plugin-version>
   </properties>
   <dependencyManagement>
